@@ -14,7 +14,16 @@ function useHashRoute() {
     window.addEventListener('hashchange', on);
     return () => window.removeEventListener('hashchange', on);
   }, []);
-  return [route, (r) => { window.location.hash = r === 'planner' ? 'planner' : ''; window.scrollTo(0, 0); }];
+  const go = (r) => {
+    const target = r === 'planner' ? 'planner' : 'portfolio';
+    setRoute(target);
+    try {
+      if (target === 'planner') window.location.hash = 'planner';
+      else history.replaceState(null, '', window.location.pathname + window.location.search);
+    } catch { /* ignore */ }
+    window.scrollTo(0, 0);
+  };
+  return [route, go];
 }
 
 export default function App() {
@@ -160,13 +169,13 @@ export default function App() {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="brand" onClick={() => go('portfolio')} style={{ cursor: 'pointer' }}>
+        <button type="button" className="brand" onClick={() => go('portfolio')} aria-label="Go to Portfolio home" title="Back to Portfolio">
           <div className="logo">P</div>
           <div>
             <h1>Portfolio Tracker</h1>
             <div className="tiny muted">All amounts in USD · data stays in this browser</div>
           </div>
-        </div>
+        </button>
         <div className="actions">
           {route === 'portfolio'
             ? <button className="btn primary" onClick={() => go('planner')}>📈 Prediction Planner</button>
