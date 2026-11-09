@@ -149,7 +149,7 @@ export default function Portfolio({ state, sections, totals, histories, prices, 
           </div>
           <hr style={{ border: 0, borderTop: '1px solid var(--border)', margin: '14px 0' }} />
           <div className="small muted" style={{ marginBottom: 8 }}>Keys are stored only in this browser, next to your portfolio data.</div>
-          <button className="btn danger" onClick={() => { if (window.confirm('Delete ALL holdings, sections and predictions from this browser? Export a backup first if you want to keep them.')) actions.clearAll(); }}>Clear all data</button>
+          <button className="btn danger" onClick={() => { if (window.confirm('Remove ALL holdings, sections and predictions from this browser (your API key stays)? Export a backup first if you want to keep them.')) { actions.clearAll(); setShowSettings(false); } }}>Clear all data (remove sample holdings)</button>
         </Modal>
       )}
 

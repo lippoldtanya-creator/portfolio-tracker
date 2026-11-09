@@ -160,7 +160,7 @@ export default function App() {
       update((s) => ({ ...s, ...data, settings: { ...s.settings, ...(data.settings || {}) } }));
       notify('Backup restored');
     },
-    clearAll: () => { update(() => emptyState()); setPrices({}); notify('All data cleared'); },
+    clearAll: () => { update((s) => ({ ...emptyState(), settings: s.settings, theme: s.theme })); setPrices({}); notify('Holdings cleared — your API key was kept'); },
     savePrediction: (p) => update((s) => { const i = s.predictions.findIndex((x) => x.id === p.id); if (i >= 0) s.predictions[i] = p; else s.predictions.push({ ...p, id: p.id || uid() }); return s; }),
     deletePrediction: (id) => update((s) => { s.predictions = s.predictions.filter((x) => x.id !== id); return s; }),
     refreshPrices: () => refreshPrices(true),
