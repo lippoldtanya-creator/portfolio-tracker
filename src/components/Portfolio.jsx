@@ -46,7 +46,7 @@ export default function Portfolio({ state, sections, totals, histories, prices, 
           <p className="muted">Create a section (like "Long-term" or "Stocks") and type in what you bought — or import a CSV from TradingView or Ledger Live.</p>
           <div className="row">
             <button className="btn primary" onClick={() => actions.addSection('Long-term')}>+ Create a section</button>
-            <button className="btn" onClick={() => setShowImport(true)}>Import CSV / PDF</button>
+            <button className="btn" onClick={() => setShowImport(true)}>📥 Import CSV / PDF</button>
             <button className="btn" onClick={actions.loadSample}>Load sample data</button>
             <button className="btn ghost" onClick={() => setShowRestore(true)}>Restore backup</button>
           </div>
@@ -83,10 +83,10 @@ export default function Portfolio({ state, sections, totals, histories, prices, 
 
       <div className="card tight" style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
         <span className="small muted" style={{ flex: 1, minWidth: 200 }}>💾 Your data lives only in this browser. Export a backup now and then.</span>
+        <button className="btn sm primary" onClick={() => setShowImport(true)}>📥 Import CSV / PDF</button>
         <button className="btn sm" onClick={exportJSON}>Export backup</button>
-        <button className="btn sm ghost" onClick={exportCSV}>CSV</button>
+        <button className="btn sm ghost" onClick={exportCSV}>Export CSV</button>
         <button className="btn sm" onClick={() => setShowRestore(true)}>Restore backup</button>
-        <button className="btn sm" onClick={() => setShowImport(true)}>Import TradingView / Ledger</button>
         <button className="btn sm ghost" onClick={() => setShowSettings(true)}>⚙ Settings</button>
         <button className="btn sm ghost" onClick={actions.refreshPrices} disabled={loadingPrices || !hasHoldings} title="Refresh prices">{loadingPrices ? '⏳' : '↻'} Prices</button>
       </div>
@@ -95,7 +95,8 @@ export default function Portfolio({ state, sections, totals, histories, prices, 
         <div className="card">
           <div className="card-head">
             <h2>Sections <Tip text="Each section is its own little spreadsheet. The bar shows how much of your whole portfolio each section is." /></h2>
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+              <button className="btn sm" onClick={() => setShowImport(true)}>📥 Import CSV / PDF</button>
               <label className="small muted">Year bought:&nbsp;
                 <select className="input" style={{ minHeight: 36, width: 'auto', display: 'inline-block', padding: '4px 8px' }} value={year} onChange={(e) => setYear(e.target.value)}>
                   <option value="all">All years</option>

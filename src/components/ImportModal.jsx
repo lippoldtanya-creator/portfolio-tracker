@@ -92,7 +92,7 @@ export default function ImportModal({ sections, actions, onClose }) {
     : <><button className="btn" onClick={() => setStep(isPdf ? 'pick' : 'map')}>Back</button><button className="btn primary" onClick={confirm} disabled={!drafts.length}>Save {drafts.filter((r) => r.asset && Number(r.quantity) > 0).length} to portfolio</button></>;
 
   return (
-    <Modal title="Import holdings" onClose={onClose} footer={footer} wide={step === 'preview'}>
+    <Modal title="Import holdings from CSV or PDF" onClose={onClose} footer={footer} wide={step === 'preview'}>
       {step === 'pick' && (
         <>
           <p className="small muted">Upload a CSV export from <b>TradingView</b> (Trading panel → History → Export) or <b>Ledger Live</b> (Accounts → ⋯ → Export operation history). Any CSV with an asset, quantity and price column works. PDF statements are read best-effort.</p>
